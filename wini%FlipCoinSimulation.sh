@@ -11,9 +11,10 @@ tails=T
 #uc3 addind doublet to filpcoin simulation
 singlet=1
 doublet=2
-echo "0:tails and 1:heads"
+triplet=3
+echo "T:tails and H:heads"
 
-for (( n=1; n<=$doublet; n++ )) 
+for (( n=$singlet; n<=$triplet; n++ )) 
 do
 	counter=0
 	while [ $counter -lt $number ]
