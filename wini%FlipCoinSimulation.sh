@@ -6,13 +6,14 @@ read -p "number of times simulation should run:" number
 declare -A resultsDicn
 declare -A perDicn
 
-heads=1
-tails=0
-#uc2
+heads=H
+tails=T
+#uc3 addind doublet to filpcoin simulation
 singlet=1
+doublet=2
 echo "0:tails and 1:heads"
 
-for (( n=1; n<=$singlet; n++ ))
+for (( n=1; n<=$doublet; n++ )) 
 do
 	counter=0
 	while [ $counter -lt $number ]
@@ -22,7 +23,7 @@ do
    	do
    		simulationResult=$((RANDOM%2))
 
-   		if [ $simulationResult -eq $heads ]
+   		if [ $simulationResult -eq 1 ]
    		then
       		result=$heads
    		else
@@ -35,23 +36,23 @@ do
 	done
 
 	echo "result from flip coin simulation :${resultsDicn[@]}"
-	declare -A sortedDicn
+	declare -A uniqDicn
 
 	for value in ${resultsDicn[@]}
-	do
+	do 
 		uniqDicn[$value]=$n
 	done
-		echo "uniq results from simulation :${!uniqDicn[@]}"
+		echo "uniq results from simulation :${!uniqDicn[@]}:${uniqDicn[@]}"
 
 	for resultInUniq in ${!uniqDicn[@]}
 	do 
 
-		if [ $n -eq ${uniqDicn[$resultSort]} ]
+		if [ $n -eq ${uniqDicn[$resultInUniq]} ]
 		then
  			count=0
    		for key in ${!resultsDicn[@]}
    		do
-      		if [ ${resultsDicn[$key]} -eq $resultInUniq ]
+      		if [ ${resultsDicn[$key]} == $resultInUniq ]
       		then
          	((count++))
       		fi
