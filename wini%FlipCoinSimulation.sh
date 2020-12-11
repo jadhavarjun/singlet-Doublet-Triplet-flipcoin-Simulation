@@ -67,3 +67,24 @@ done
 echo "percentage  dictionary:${perDicn[@]}"
 echo "uniq comibinations occured in dictionary:${!perDicn[@]}"
 
+maxPer=0
+elements=0
+for Flip in ${!perDicn[@]}
+do
+	if [[ $maxPer -eq ${perDicn[$Flip]} ]]
+	then
+		maxPer1=$maxPer
+		winingCombo1=$Flip
+	elif [[ $maxPer -lt ${perDicn[$Flip]} ]]
+   then
+      maxPer=${perDicn[$Flip]}
+      winingCombo=$Flip
+	fi
+done
+
+if [[ $maxPer -eq $maxPer1 ]]
+then
+	echo "$winingCombo $winingCombo1 is wining combination at $maxPer"
+else
+	echo "$winingCombo  is wining combination at $maxPer"
+fi
